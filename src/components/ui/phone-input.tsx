@@ -7,7 +7,7 @@ import { Label } from "./label";
 import Image from "next/image";
 
 import * as Popover from "@radix-ui/react-popover";
-import { getCountries, type Country } from "@/service/useGetCountry";
+import { getCountries, type Country } from "@/services/useGetCountry";
 
 export interface PhoneInputValue {
   code: string;
