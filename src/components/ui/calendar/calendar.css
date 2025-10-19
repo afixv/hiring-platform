@@ -1,0 +1,238 @@
+/* src/components/Calendar.css */
+:root {
+  --bg-color: #ffffff;
+  --primary-color: #01959f; /* Teal color from design system */
+  --text-color: #1d1f20; /* Neutral/100 */
+  --faded-text-color: #9e9e9e; /* Neutral/60 */
+  --border-color: #e0e0e0; /* Neutral/40 */
+  --neutral-30: #ededed;
+  --neutral-90: #404040;
+  --border-radius: 16px;
+  --shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Wrapper untuk input dan kalender */
+.date-picker-wrapper {
+  position: relative;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  width: fit-content;
+}
+
+/* Style untuk input tanggal - DEPRECATED, menggunakan Tailwind CSS */
+.date-input-container {
+  display: flex;
+  gap: 4px;
+  background-color: #1a1a1a;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 2px solid #333;
+}
+
+.date-input-box {
+  background-color: var(--bg-color);
+  color: var(--faded-text-color);
+  padding: 8px 12px;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 16px;
+  min-width: 30px;
+}
+
+.date-input-box.year {
+  min-width: 60px;
+}
+
+/* Kontainer utama kalender */
+.calendar-container {
+  position: absolute;
+  left: 0;
+  width: 376px;
+  background-color: var(--bg-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  padding: 24px;
+  z-index: 1000;
+  user-select: none;
+  border: 1px solid var(--border-color);
+  min-width: 320px;
+  max-width: 90vw;
+}
+
+/* Default: buka di bawah */
+.calendar-container.open-bottom {
+  top: calc(100% + 10px);
+}
+
+/* Buka di atas */
+.calendar-container.open-top {
+  bottom: calc(100% + 10px);
+  top: auto;
+}
+
+/* Responsive untuk tablet */
+@media (max-width: 768px) {
+  .calendar-container {
+    width: 100%;
+    max-width: 380px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .calendar-container.open-bottom {
+    top: calc(100% + 8px);
+  }
+  
+  .calendar-container.open-top {
+    bottom: calc(100% + 8px);
+  }
+}
+
+/* Responsive untuk mobile */
+@media (max-width: 480px) {
+  .calendar-container {
+    width: calc(100vw - 32px);
+    max-width: 100%;
+    padding: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .calendar-header {
+    margin-bottom: 16px;
+  }
+  
+  .header-title {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  
+  .day-name {
+    font-size: 12px;
+    line-height: 20px;
+  }
+  
+  .calendar-cell {
+    font-size: 12px;
+    line-height: 20px;
+    width: 36px;
+    height: 20px;
+    padding: 6px;
+  }
+  
+  .month-grid .calendar-cell,
+  .year-grid .calendar-cell,
+  .decade-grid .calendar-cell {
+    height: 48px;
+    font-size: 12px;
+  }
+}
+
+/* Header (Navigasi & Judul) */
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  height: 28px;
+}
+
+.header-title {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 28px;
+  cursor: pointer;
+  padding: 0px 8px;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+  color: var(--neutral-90);
+}
+
+.header-title:hover {
+  background-color: var(--neutral-30);
+}
+
+.nav-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-color);
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s ease;
+}
+
+.nav-button:hover {
+  opacity: 0.7;
+}
+
+/* Grid utama untuk hari/bulan/tahun */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+
+.days-of-week {
+  margin-bottom: 8px;
+}
+
+.day-name {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 24px;
+  text-align: center;
+  color: var(--text-color);
+}
+
+.calendar-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 24px;
+  padding: 8px;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  text-align: center;
+  background-color: var(--bg-color);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.calendar-cell:hover:not(.other-month):not(.selected) {
+  background-color: var(--neutral-30);
+}
+
+.calendar-cell.other-month {
+  color: var(--faded-text-color);
+  cursor: default;
+}
+
+.calendar-cell.selected {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  font-weight: 400;
+}
+
+/* Grid khusus untuk Bulan, Tahun, Dekade */
+.month-grid,
+.year-grid,
+.decade-grid {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  width: 100%;
+}
+
+.month-grid .calendar-cell,
+.year-grid .calendar-cell,
+.decade-grid .calendar-cell {
+  width: 100%;
+  height: 24px;
+  padding: 8px;
+  font-size: 14px;
+  line-height: 24px;
+}
