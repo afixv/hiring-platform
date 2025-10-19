@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 
@@ -12,26 +12,45 @@ interface ProtectedRouteProps {
 export function ProtectedRoute({ children, requiredRole }: ProtectedRouteProps) {
   const router = useRouter();
   const { loading, isAuthenticated, role } = useAuth();
+  const [shouldRender, setShouldRender] = useState(false);
 
   useEffect(() => {
-    // Wait for auth to finish loading
-    if (loading) return;
+    // Still loading - wait
+    if (loading) {
+      setShouldRender(false);
+      return;
+    }
 
-    // If not authenticated, redirect to login
+    // Auth loading finished
     if (!isAuthenticated) {
+      // Not authenticated - redirect to login
+      setShouldRender(false);
       router.push('/auth/login');
       return;
     }
 
-    // If role is required and doesn't match, redirect to home
-    if (requiredRole && role !== requiredRole) {
-      router.push('/');
-      return;
+    // Authenticated but role check needed
+    if (requiredRole) {
+      if (role === requiredRole) {
+        // Role matches - render
+        setShouldRender(true);
+      } else if (role === null) {
+        // Role still loading from database - wait instead of redirect
+        setShouldRender(false);
+        // Don't redirect, wait for role to load
+      } else {
+        // Role doesn't match - redirect to home
+        setShouldRender(false);
+        router.push('/');
+      }
+    } else {
+      // No role required, just need authentication
+      setShouldRender(true);
     }
   }, [loading, isAuthenticated, role, requiredRole, router]);
 
-  // Show loading while checking auth
-  if (loading) {
+  // Show loading screen
+  if (loading || !shouldRender) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-neutral-20">
         <div className="text-center">
@@ -40,11 +59,6 @@ export function ProtectedRoute({ children, requiredRole }: ProtectedRouteProps) 
         </div>
       </div>
     );
-  }
-
-  // Don't render if not authenticated or wrong role
-  if (!isAuthenticated || (requiredRole && role !== requiredRole)) {
-    return null;
   }
 
   return <>{children}</>;

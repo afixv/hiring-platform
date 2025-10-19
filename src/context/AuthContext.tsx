@@ -36,7 +36,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   // Fetch user profile from database
-  const fetchUserProfile = async (userId: string) => {
+  const fetchUserProfile = async (userId: string, supabaseUserData?: SupabaseUser) => {
     try {
       const { data: userData, error } = await supabase
         .from('users')
@@ -45,7 +45,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         .single();
 
       if (error) {
-        console.error('Error fetching user profile:', error);
+        console.warn('Error fetching user profile from database:', error.message);
+        // Fallback: try to get role from JWT metadata
+        if (supabaseUserData?.user_metadata?.role) {
+          console.log('Using role from user metadata:', supabaseUserData.user_metadata.role);
+          setRole(supabaseUserData.user_metadata.role as UserRole);
+        }
         return null;
       }
 
@@ -55,9 +60,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setRole(typedUser.role as UserRole);
         return typedUser;
       }
+      
+      // No user record found, try metadata
+      if (supabaseUserData?.user_metadata?.role) {
+        console.log('User not in database, using metadata role:', supabaseUserData.user_metadata.role);
+        setRole(supabaseUserData.user_metadata.role as UserRole);
+      }
       return null;
     } catch (error) {
       console.error('Error fetching user profile:', error);
+      // Fallback to metadata
+      if (supabaseUserData?.user_metadata?.role) {
+        setRole(supabaseUserData.user_metadata.role as UserRole);
+      }
       return null;
     }
   };
@@ -73,7 +88,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
         if (session) {
           setSupabaseUser(session.user);
-          await fetchUserProfile(session.user.id);
+          await fetchUserProfile(session.user.id, session.user);
         }
       } catch (error) {
         console.error('Error initializing auth:', error);
@@ -91,7 +106,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (session) {
         setSupabaseUser(session.user);
         // Fetch profile after auth state change
-        await fetchUserProfile(session.user.id);
+        await fetchUserProfile(session.user.id, session.user);
       } else {
         setSupabaseUser(null);
         setUser(null);
@@ -176,7 +191,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       } = await supabase.auth.getSession();
 
       if (session) {
-        await fetchUserProfile(session.user.id);
+        await fetchUserProfile(session.user.id, session.user);
       }
     } catch (error) {
       console.error('Error refreshing user:', error);

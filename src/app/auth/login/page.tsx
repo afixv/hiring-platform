@@ -12,29 +12,23 @@ export default function LoginPage() {
   const { login } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [loginLoading, setLoginLoading] = useState(false);
   const [error, setError] = useState("");
   const [showToast, setShowToast] = useState(false);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
-    setLoading(true);
+    setLoginLoading(true);
 
     try {
       await login(email, password);
       setShowToast(true);
       
-      // Wait a bit for auth state to update, then redirect based on role
+      // Redirect ke home yang akan handle role-based routing
       setTimeout(() => {
-        // Get the updated auth context after login
-        const checkRoleAndRedirect = async () => {
-          // Give auth context time to update
-          await new Promise(resolve => setTimeout(resolve, 500));
-          router.push("/");
-        };
-        checkRoleAndRedirect();
-      }, 1000);
+        router.push("/");
+      }, 1500);
     } catch (err) {
       const errorMessage =
         err instanceof Error
@@ -42,7 +36,7 @@ export default function LoginPage() {
           : "Login gagal. Cek email dan password.";
       setError(errorMessage);
     } finally {
-      setLoading(false);
+      setLoginLoading(false);
     }
   };
 
@@ -67,7 +61,7 @@ export default function LoginPage() {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="email@example.com"
               required
-              disabled={loading}
+              disabled={loginLoading}
               className="w-full"
             />
           </div>
@@ -82,7 +76,7 @@ export default function LoginPage() {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
               required
-              disabled={loading}
+              disabled={loginLoading}
               className="w-full"
             />
           </div>
@@ -95,9 +89,9 @@ export default function LoginPage() {
 
           <Button
             type="submit"
-            disabled={loading}
+            disabled={loginLoading}
             className="w-full bg-teal-600 hover:bg-teal-700 text-white font-semibold py-2 rounded-md transition">
-            {loading ? "Loading..." : "Masuk"}
+            {loginLoading ? "Loading..." : "Masuk"}
           </Button>
         </form>
 
