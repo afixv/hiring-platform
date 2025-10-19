@@ -81,18 +81,25 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const initializeAuth = async () => {
       try {
+        console.log('[Auth] Initializing auth state...');
+        
         // Check current session
         const {
           data: { session },
         } = await supabase.auth.getSession();
 
         if (session) {
+          console.log('[Auth] Session found for user:', session.user.email);
           setSupabaseUser(session.user);
-          await fetchUserProfile(session.user.id, session.user);
+          const profile = await fetchUserProfile(session.user.id, session.user);
+          console.log('[Auth] User profile loaded:', profile?.role || 'no profile');
+        } else {
+          console.log('[Auth] No active session');
         }
       } catch (error) {
-        console.error('Error initializing auth:', error);
+        console.error('[Auth] Error initializing auth:', error);
       } finally {
+        console.log('[Auth] Auth initialization complete');
         setLoading(false);
       }
     };
@@ -103,14 +110,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange(async (event, session) => {
+      console.log('[Auth] Auth state changed:', event, session?.user?.email);
+      
       if (session) {
         setSupabaseUser(session.user);
         // Fetch profile after auth state change
-        await fetchUserProfile(session.user.id, session.user);
+        const profile = await fetchUserProfile(session.user.id, session.user);
+        console.log('[Auth] Profile synced:', profile?.role || 'no profile');
       } else {
         setSupabaseUser(null);
         setUser(null);
         setRole(null);
+        console.log('[Auth] Session cleared');
       }
     });
 
