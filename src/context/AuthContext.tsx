@@ -46,9 +46,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
       if (error) {
         console.warn('Error fetching user profile from database:', error.message);
-        // Fallback: try to get role from JWT metadata
         if (supabaseUserData?.user_metadata?.role) {
-          console.log('Using role from user metadata:', supabaseUserData.user_metadata.role);
           setRole(supabaseUserData.user_metadata.role as UserRole);
         }
         return null;
@@ -61,15 +59,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         return typedUser;
       }
       
-      // No user record found, try metadata
       if (supabaseUserData?.user_metadata?.role) {
-        console.log('User not in database, using metadata role:', supabaseUserData.user_metadata.role);
         setRole(supabaseUserData.user_metadata.role as UserRole);
       }
       return null;
     } catch (error) {
       console.error('Error fetching user profile:', error);
-      // Fallback to metadata
       if (supabaseUserData?.user_metadata?.role) {
         setRole(supabaseUserData.user_metadata.role as UserRole);
       }
@@ -77,51 +72,35 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  // Initialize auth state
   useEffect(() => {
     const initializeAuth = async () => {
       try {
-        console.log('[Auth] Initializing auth state...');
-        
-        // Check current session
         const {
           data: { session },
         } = await supabase.auth.getSession();
 
         if (session) {
-          console.log('[Auth] Session found for user:', session.user.email);
           setSupabaseUser(session.user);
-          const profile = await fetchUserProfile(session.user.id, session.user);
-          console.log('[Auth] User profile loaded:', profile?.role || 'no profile');
-        } else {
-          console.log('[Auth] No active session');
-        }
+        } 
       } catch (error) {
         console.error('[Auth] Error initializing auth:', error);
       } finally {
-        console.log('[Auth] Auth initialization complete');
         setLoading(false);
       }
     };
 
     initializeAuth();
 
-    // Listen for auth changes
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange(async (event, session) => {
-      console.log('[Auth] Auth state changed:', event, session?.user?.email);
       
       if (session) {
         setSupabaseUser(session.user);
-        // Fetch profile after auth state change
-        const profile = await fetchUserProfile(session.user.id, session.user);
-        console.log('[Auth] Profile synced:', profile?.role || 'no profile');
       } else {
         setSupabaseUser(null);
         setUser(null);
         setRole(null);
-        console.log('[Auth] Session cleared');
       }
     });
 
@@ -146,7 +125,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const register = async (email: string, password: string, fullName: string, userRole: UserRole) => {
     try {
-      // Create auth user with metadata
       const { data: authData, error: authError } = await supabase.auth.signUp({
         email,
         password,
@@ -161,8 +139,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (authError) throw authError;
       if (!authData.user) throw new Error('Failed to create user');
 
-      // The trigger will automatically create the user profile
-      // But if trigger doesn't work, we insert as backup
       try {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         await (supabase.from('users') as any).insert({
