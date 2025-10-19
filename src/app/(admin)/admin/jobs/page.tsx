@@ -24,6 +24,7 @@ function AdminJobsContent() {
   );
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showSuccessToast, setShowSuccessToast] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     fetchJobs();
@@ -67,7 +68,7 @@ function AdminJobsContent() {
 
   async function handleStatusChange(jobId: string, newStatus: Job["status"]) {
     try {
-      await updateJobStatus(jobId, newStatus);
+      setErrorMessage("");
 
       setJobs((prevJobs) =>
         prevJobs.map((job) =>
@@ -75,11 +76,25 @@ function AdminJobsContent() {
         )
       );
 
+      const updatedJob = await updateJobStatus(jobId, newStatus);
+
+      if (updatedJob.status !== newStatus) {
+        throw new Error(
+          `Update failed: expected ${newStatus}, got ${updatedJob.status}`
+        );
+      }
+
       setShowSuccessToast(true);
       setTimeout(() => setShowSuccessToast(false), 3000);
     } catch (error) {
+      const errorMsg =
+        error instanceof Error ? error.message : "Failed to update job status";
       console.error("Failed to update job status:", error);
+      setErrorMessage(errorMsg);
+
       fetchJobs();
+
+      setTimeout(() => setErrorMessage(""), 5000);
     }
   }
 
@@ -123,7 +138,9 @@ function AdminJobsContent() {
                 placeholder="Search by job details"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                trailingIcon={<Search className="size-5 md:size-6 text-primary" />}
+                trailingIcon={
+                  <Search className="size-5 md:size-6 text-primary" />
+                }
               />
 
               {filteredJobs.length === 0 ? (
@@ -187,8 +204,15 @@ function AdminJobsContent() {
           />
           {showSuccessToast && (
             <Toast
-              message="Job vacancy successfully created"
+              message="Job status updated successfully"
               onClose={() => setShowSuccessToast(false)}
+              duration={3000}
+            />
+          )}
+          {errorMessage && (
+            <Toast
+              message={errorMessage}
+              onClose={() => setErrorMessage("")}
               duration={5000}
             />
           )}
