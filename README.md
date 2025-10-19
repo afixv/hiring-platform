@@ -47,6 +47,12 @@ The Hiring Platform is a comprehensive recruitment management system designed to
 - **Zustand** (^5.0.8) - Lightweight state management
 - **React Context API** - Built-in React state management
 
+### Drag and Drop
+- **@dnd-kit/core** - Lightweight, modular, extensible drag & drop toolkit
+- **@dnd-kit/utilities** - Utility functions for drag and drop operations
+- **@dnd-kit/sortable** - Sortable component for drag and drop lists
+- **@dnd-kit/providers** - Providers for dnd-kit
+
 ### Testing & Quality
 - **Jest** (^30.2.0) - JavaScript testing framework
 - **@testing-library/react** (^16.3.0) - React component testing utilities
@@ -297,6 +303,13 @@ hiring-platform/
 - ✅ **Modal Dialogs** - Reusable modal components for job creation and more
 - ✅ **Toast Notifications** - User feedback notifications
 - ✅ **Avatar Components** - User profile avatars with dropdown menus
+- ✅ **Drag and Drop** - Intuitive drag and drop functionality for candidate management
+
+### Drag and Drop Features
+- ✅ **Candidate Reordering** - Drag and drop candidates to reorder them
+- ✅ **Smooth Animations** - Smooth transitions during drag operations
+- ✅ **Touch Support** - Works on both desktop and touch devices
+- ✅ **Real-time Sync** - Changes persist to database immediately
 
 ### Testing
 - ✅ **Unit Tests** - Component and utility function tests
@@ -315,6 +328,7 @@ hiring-platform/
 - 🎯 **Gesture Recognition System** - Advanced hand pose detection using Fingerpose
 - 🎯 **Webcam Integration** - Real-time video capture for gesture authentication
 - 🎯 **Phone Input Formatting** - International phone number input support
+- 🎯 **Drag and Drop System** - Flexible dnd-kit based drag and drop for managing candidates
 
 ### Developer Experience
 - 🎯 **TypeScript Strict Mode** - Full type safety throughout the application
