@@ -279,7 +279,7 @@ hiring-platform/
 
 ### Job Management (Admin)
 - ✅ **Create Job Postings** - Admin can create new job openings with detailed descriptions
-- ✅ **Manage Jobs** - View, edit, and delete job postings
+- ✅ **Manage Jobs** - View and update status job postings
 - ✅ **Job Status Tracking** - Track job status (Open, Closed, etc.)
 - ✅ **Candidate Review** - View all candidates who applied for specific jobs
 
@@ -288,16 +288,12 @@ hiring-platform/
 - ✅ **Candidate Profiles** - Detailed candidate information and application history
 
 ### Job Application (Applicant)
-- ✅ **Job Browsing** - Searchvailable job positions
 - ✅ **Application Submission** - Apply for jobs with required information
-- ✅ **Application History** - View submitted applications and their status
-- ✅ **User Profiles** - Create and manage applicant profiles
 
 ### UI/UX Components
 - ✅ **Design System** - Comprehensive design system with consistent theming
 - ✅ **Responsive Layout** - Mobile-first responsive design
 - ✅ **Form Validation** - Real-time form validation with Zod
-- ✅ **Data Tables** - Advanced data tables with sorting and filtering
 - ✅ **Modal Dialogs** - Reusable modal components for job creation and more
 - ✅ **Toast Notifications** - User feedback notifications
 - ✅ **Avatar Components** - User profile avatars with dropdown menus
@@ -314,9 +310,6 @@ hiring-platform/
 - 🎯 **Custom Design System** - Tailored color palette and typography matching brand guidelines
 - 🎯 **Gesture Overlay** - Real-time visual feedback during gesture capture
 - 🎯 **Pose Sequence Display** - Shows detected hand pose positions
-- 🎯 **Profile Image Uploader** - Image upload functionality for candidate profiles
-- 🎯 **Animated Transitions** - Smooth animations using Tailwind CSS animation utilities
-- 🎯 **Dark Mode Ready** - Design system supports light/dark themes
 
 ### Advanced Features
 - 🎯 **Gesture Recognition System** - Advanced hand pose detection using Fingerpose
@@ -355,20 +348,6 @@ hiring-platform/
 - Feature-specific components in `/components/feature/` directory
 - Shared business logic in custom hooks (`/hooks/`)
 - Database operations centralized in `/services/`
-
-## ⚠️ Known Limitations (if any)
-
-### Current Limitations
-- 📌 **Gesture Recognition Accuracy** - Gesture recognition performance depends on lighting conditions and camera quality; may have lower accuracy in poor lighting
-- 📌 **Webcam Required** - Gesture-based authentication requires webcam access; alternative auth methods not yet implemented
-- 📌 **Browser Compatibility** - Gesture recognition features require browsers that support WebRTC and getUserMedia API
-- 📌 **Mobile Limitations** - Some gesture recognition features may not work optimally on mobile devices
-- 📌 **Single Account per Device** - Session management is device-based; multiple simultaneous sessions not supported
-
-### Performance Considerations
-- 📌 **Large Candidate Lists** - Performance may degrade with very large candidate lists (10,000+); pagination recommended
-- 📌 **Real-time Sync Latency** - Supabase real-time subscriptions may have slight latency (typically <1s)
-
 ---
 
 ## 📚 Additional Resources
