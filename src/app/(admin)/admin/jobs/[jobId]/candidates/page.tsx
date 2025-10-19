@@ -8,7 +8,6 @@ import { getJobById, getApplicantsByJobId } from "@/services/database";
 import type { Job, Applicant } from "@/types/database";
 import Image from "next/image";
 import CandidatesTable from "@/components/feature/admin/candidates-table";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { UserAvatarDropdown } from "@/components/feature/admin/user-avatar-dropdown";
 
 interface CandidatesPageProps {
