@@ -8,38 +8,38 @@ Dokumentasi lengkap tentang komponen, design system, package dependencies, dan a
 
 ### Production Dependencies
 
-| Package | Version | Deskripsi |
-|---------|---------|-----------|
-| `next` | 15.5.6 | React framework untuk production-ready web applications |
-| `react` | 19.1.0 | JavaScript library untuk membangun user interfaces |
-| `react-dom` | 19.1.0 | React package untuk DOM rendering |
-| `@radix-ui/react-dialog` | ^1.1.15 | Dialog/Modal component primitive dari Radix UI |
-| `@radix-ui/react-popover` | ^1.1.15 | Popover component primitive dari Radix UI |
-| `@radix-ui/react-select` | ^2.2.6 | Select dropdown component primitive dari Radix UI |
-| `@radix-ui/react-slot` | ^1.2.3 | Slot merging component dari Radix UI |
-| `class-variance-authority` | ^0.7.1 | Type-safe CSS class management untuk component variants |
-| `clsx` | ^2.1.1 | Utility untuk conditional class names |
-| `tailwind-merge` | ^3.3.1 | Merge Tailwind CSS classes intelligently |
-| `fingerpose` | ^0.1.0 | Hand gesture recognition library untuk pose detection |
-| `lucide-react` | ^0.546.0 | Beautiful icon library untuk React |
-| `react-icons` | ^5.5.0 | Popular icon sets sebagai React components |
-| `react-webcam` | ^7.2.0 | Webcam component untuk React |
+| Package                    | Version  | Deskripsi                                               |
+| -------------------------- | -------- | ------------------------------------------------------- |
+| `next`                     | 15.5.6   | React framework untuk production-ready web applications |
+| `react`                    | 19.1.0   | JavaScript library untuk membangun user interfaces      |
+| `react-dom`                | 19.1.0   | React package untuk DOM rendering                       |
+| `@radix-ui/react-dialog`   | ^1.1.15  | Dialog/Modal component primitive dari Radix UI          |
+| `@radix-ui/react-popover`  | ^1.1.15  | Popover component primitive dari Radix UI               |
+| `@radix-ui/react-select`   | ^2.2.6   | Select dropdown component primitive dari Radix UI       |
+| `@radix-ui/react-slot`     | ^1.2.3   | Slot merging component dari Radix UI                    |
+| `class-variance-authority` | ^0.7.1   | Type-safe CSS class management untuk component variants |
+| `clsx`                     | ^2.1.1   | Utility untuk conditional class names                   |
+| `tailwind-merge`           | ^3.3.1   | Merge Tailwind CSS classes intelligently                |
+| `fingerpose`               | ^0.1.0   | Hand gesture recognition library untuk pose detection   |
+| `lucide-react`             | ^0.546.0 | Beautiful icon library untuk React                      |
+| `react-icons`              | ^5.5.0   | Popular icon sets sebagai React components              |
+| `react-webcam`             | ^7.2.0   | Webcam component untuk React                            |
 
 ### Development Dependencies
 
-| Package | Version | Deskripsi |
-|---------|---------|-----------|
-| `typescript` | ^5 | TypeScript compiler |
-| `tailwindcss` | ^4 | Utility-first CSS framework |
-| `@tailwindcss/postcss` | ^4 | Tailwind CSS PostCSS plugin |
-| `postcss` | (via @tailwindcss/postcss) | Tool untuk transformasi CSS |
-| `eslint` | ^9 | JavaScript linter |
-| `eslint-config-next` | 15.5.6 | ESLint config khusus Next.js |
-| `@eslint/eslintrc` | ^3 | ESLint config module |
-| `@types/react` | ^19 | TypeScript types untuk React |
-| `@types/react-dom` | ^19 | TypeScript types untuk React DOM |
-| `@types/node` | ^20 | TypeScript types untuk Node.js |
-| `tw-animate-css` | ^1.4.0 | Tailwind CSS animation utilities |
+| Package                | Version                    | Deskripsi                        |
+| ---------------------- | -------------------------- | -------------------------------- |
+| `typescript`           | ^5                         | TypeScript compiler              |
+| `tailwindcss`          | ^4                         | Utility-first CSS framework      |
+| `@tailwindcss/postcss` | ^4                         | Tailwind CSS PostCSS plugin      |
+| `postcss`              | (via @tailwindcss/postcss) | Tool untuk transformasi CSS      |
+| `eslint`               | ^9                         | JavaScript linter                |
+| `eslint-config-next`   | 15.5.6                     | ESLint config khusus Next.js     |
+| `@eslint/eslintrc`     | ^3                         | ESLint config module             |
+| `@types/react`         | ^19                        | TypeScript types untuk React     |
+| `@types/react-dom`     | ^19                        | TypeScript types untuk React DOM |
+| `@types/node`          | ^20                        | TypeScript types untuk Node.js   |
+| `tw-animate-css`       | ^1.4.0                     | Tailwind CSS animation utilities |
 
 ---
 
@@ -48,6 +48,7 @@ Dokumentasi lengkap tentang komponen, design system, package dependencies, dan a
 ### Tipografi
 
 #### Font Family
+
 ```
 Family: Nunito Sans
 Weight: 400 (Regular), 700 (Bold)
@@ -56,71 +57,72 @@ Source: Google Fonts
 
 #### Heading Styles
 
-| Class | Font Size | Font Weight | Line Height | Penggunaan |
-|-------|-----------|------------|------------|-----------|
-| `.heading-lg` | 32px | 400 | 44px | Large headings |
-| `.heading-lg-bold` | 32px | 700 | 44px | Large bold headings |
-| `.heading-md` | 24px | 400 | 36px | Medium headings |
-| `.heading-md-bold` | 24px | 700 | 36px | Medium bold headings |
-| `.heading-sm` | 20px | 400 | 32px | Small headings |
-| `.heading-sm-bold` | 20px | 700 | 32px | Small bold headings |
+| Class              | Font Size | Font Weight | Line Height | Penggunaan           |
+| ------------------ | --------- | ----------- | ----------- | -------------------- |
+| `.heading-lg`      | 32px      | 400         | 44px        | Large headings       |
+| `.heading-lg-bold` | 32px      | 700         | 44px        | Large bold headings  |
+| `.heading-md`      | 24px      | 400         | 36px        | Medium headings      |
+| `.heading-md-bold` | 24px      | 700         | 36px        | Medium bold headings |
+| `.heading-sm`      | 20px      | 400         | 32px        | Small headings       |
+| `.heading-sm-bold` | 20px      | 700         | 32px        | Small bold headings  |
 
 #### Body Text Styles
 
-| Class | Font Size | Font Weight | Line Height |
-|-------|-----------|------------|------------|
-| `.text-display` | 48px | 700 | 64px |
-| `.text-lg` | 16px | 400 | 28px |
-| `.text-lg-bold` | 16px | 700 | 28px |
-| `.text-base` | 14px | 400 | 24px |
-| `.text-base-bold` | 14px | 700 | 24px |
-| `.text-sm` | 14px | 400 | 24px |
-| `.text-sm-bold` | 14px | 700 | 24px |
-| `.text-xs` | 12px | 400 | 20px |
-| `.text-xs-bold` | 12px | 700 | 20px |
+| Class             | Font Size | Font Weight | Line Height |
+| ----------------- | --------- | ----------- | ----------- |
+| `.text-display`   | 48px      | 700         | 64px        |
+| `.text-lg`        | 16px      | 400         | 28px        |
+| `.text-lg-bold`   | 16px      | 700         | 28px        |
+| `.text-base`      | 14px      | 400         | 24px        |
+| `.text-base-bold` | 14px      | 700         | 24px        |
+| `.text-sm`        | 14px      | 400         | 24px        |
+| `.text-sm-bold`   | 14px      | 700         | 24px        |
+| `.text-xs`        | 12px      | 400         | 20px        |
+| `.text-xs-bold`   | 12px      | 700         | 20px        |
 
 ### Color Palette
 
 #### Neutral Colors (Grayscale)
 
-| Variable | Hex | Nama |
-|----------|-----|------|
+| Variable              | Hex     | Nama                   |
+| --------------------- | ------- | ---------------------- |
 | `--color-neutral-100` | #1d1f20 | Darkest (Almost Black) |
-| `--color-neutral-90` | #404040 | Dark Gray |
-| `--color-neutral-80` | #616161 | Gray |
-| `--color-neutral-70` | #757575 | Medium Gray |
-| `--color-neutral-60` | #9e9e9e | Light Gray |
-| `--color-neutral-50` | #c2c2c2 | Lighter Gray |
-| `--color-neutral-40` | #e0e0e0 | Very Light Gray |
-| `--color-neutral-30` | #ededed | Almost White |
-| `--color-neutral-20` | #fafafa | Very Very Light |
-| `--color-neutral-10` | #ffffff | White |
+| `--color-neutral-90`  | #404040 | Dark Gray              |
+| `--color-neutral-80`  | #616161 | Gray                   |
+| `--color-neutral-70`  | #757575 | Medium Gray            |
+| `--color-neutral-60`  | #9e9e9e | Light Gray             |
+| `--color-neutral-50`  | #c2c2c2 | Lighter Gray           |
+| `--color-neutral-40`  | #e0e0e0 | Very Light Gray        |
+| `--color-neutral-30`  | #ededed | Almost White           |
+| `--color-neutral-20`  | #fafafa | Very Very Light        |
+| `--color-neutral-10`  | #ffffff | White                  |
 
 #### Primary Color (Teal)
 
-| Variable | Hex | Penggunaan |
-|----------|-----|-----------|
-| `--color-primary` | #01959f | Main color |
-| `--color-primary-surface` | #f7feff | Light background |
-| `--color-primary-border` | #4db5bc | Border color |
-| `--color-primary-hover` | #01777f | Hover state |
-| `--color-primary-pressed` | #146166 | Active/Pressed state |
-| `--color-primary-focus` | rgba(1, 149, 159, 0.2) | Focus ring color |
+| Variable                  | Hex                    | Penggunaan           |
+| ------------------------- | ---------------------- | -------------------- |
+| `--color-primary`         | #01959f                | Main color           |
+| `--color-primary-surface` | #f7feff                | Light background     |
+| `--color-primary-border`  | #4db5bc                | Border color         |
+| `--color-primary-hover`   | #01777f                | Hover state          |
+| `--color-primary-pressed` | #146166                | Active/Pressed state |
+| `--color-primary-focus`   | rgba(1, 149, 159, 0.2) | Focus ring color     |
 
 #### Secondary Color (Yellow/Gold)
 
-| Variable | Hex | Penggunaan |
-|----------|-----|-----------|
-| `--color-secondary` | #fbc037 | Main secondary color |
-| `--color-secondary-surface` | #fffcf5 | Light background |
-| `--color-secondary-border` | #feeabc | Border color |
-| `--color-secondary-hover` | #f8a92f | Hover state |
-| `--color-secondary-pressed` | #fa9810 | Active/Pressed state |
-| `--color-secondary-focus` | rgba(251, 192, 55, 0.2) | Focus ring color |
+| Variable                    | Hex                     | Penggunaan           |
+| --------------------------- | ----------------------- | -------------------- |
+| `--color-secondary`         | #fbc037                 | Main secondary color |
+| `--color-secondary-surface` | #fffcf5                 | Light background     |
+| `--color-secondary-border`  | #feeabc                 | Border color         |
+| `--color-secondary-hover`   | #f8a92f                 | Hover state          |
+| `--color-secondary-pressed` | #fa9810                 | Active/Pressed state |
+| `--color-secondary-focus`   | rgba(251, 192, 55, 0.2) | Focus ring color     |
 
 #### Semantic Colors
 
 ##### Danger (Red)
+
 ```
 --color-danger: #e11428
 --color-danger-surface: #fffafa
@@ -131,6 +133,7 @@ Source: Google Fonts
 ```
 
 ##### Warning (Orange)
+
 ```
 --color-warning: #ca7336
 --color-warning-surface: #fcf7f3
@@ -141,6 +144,7 @@ Source: Google Fonts
 ```
 
 ##### Success (Green)
+
 ```
 --color-success: #43936c
 --color-success-surface: #f8fbf9
@@ -159,17 +163,17 @@ Multiples: 0.5rem (2x), 0.75rem (3x), 1rem (4x), dst...
 
 ### Shadow Utilities
 
-| Class | Deskripsi |
-|-------|-----------|
-| `.shadow-input` | `inset 1px 2px 2px rgba(0, 0, 0, 0.12)` - Input shadow |
-| `.shadow-button` | `0px 1px 2px rgba(0, 0, 0, 0.12)` - Button shadow |
-| `.shadow-modal` | `0px 4px 8px rgba(0, 0, 0, 0.1)` - Modal/Dropdown shadow |
+| Class            | Deskripsi                                                |
+| ---------------- | -------------------------------------------------------- |
+| `.shadow-input`  | `inset 1px 2px 2px rgba(0, 0, 0, 0.12)` - Input shadow   |
+| `.shadow-button` | `0px 1px 2px rgba(0, 0, 0, 0.12)` - Button shadow        |
+| `.shadow-modal`  | `0px 4px 8px rgba(0, 0, 0, 0.1)` - Modal/Dropdown shadow |
 
 ### Gradient Utilities
 
-| Class | Deskripsi |
-|-------|-----------|
-| `.bg-gradient-primary` | Linear gradient: #fbc037 → #ffe76b |
+| Class                    | Deskripsi                              |
+| ------------------------ | -------------------------------------- |
+| `.bg-gradient-primary`   | Linear gradient: #fbc037 → #ffe76b     |
 | `.bg-gradient-secondary` | Linear gradient: transparent → #fffcf5 |
 
 ---
@@ -177,9 +181,11 @@ Multiples: 0.5rem (2x), 0.75rem (3x), 1rem (4x), dst...
 ## 🧩 UI Components
 
 ### Button Component
+
 **File:** `src/components/ui/button.tsx`
 
 #### Props Interface
+
 ```typescript
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   asChild?: boolean;
@@ -191,16 +197,19 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 ```
 
 #### Variants
+
 - **primary**: Background primary color dengan text white, hover dan active states
 - **secondary**: Background secondary (yellow) dengan text dark gray
 - **outline**: Bordered style dengan transparent background
 
 #### Sizes
+
 - **sm**: Height 7, padding-x 4, font-size text-sm-bold
 - **md**: Height 8, padding-x 4, font-size text-base-bold (default)
 - **lg**: Height 10, padding-x 4, font-size text-lg-bold
 
 #### Features
+
 - Accessible dengan Radix Slot integration
 - Support leading dan trailing icons
 - Shadow dan transition effects
@@ -257,9 +266,11 @@ import Link from "next/link";
 ---
 
 ### Input Component
+
 **File:** `src/components/ui/input.tsx`
 
 #### Props Interface
+
 ```typescript
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   leadingIcon?: React.ReactNode;
@@ -275,7 +286,8 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 ```
 
 #### Features
-- Label support dengan required indicator (*)
+
+- Label support dengan required indicator (\*)
 - Helper text dengan dynamic color (error, success, default)
 - Character counter (optional)
 - Leading dan trailing icon support
@@ -375,11 +387,14 @@ const [email, setEmail] = useState("");
 ---
 
 ### Textarea Component
+
 **File:** `src/components/ui/textarea.tsx`
 
 #### Props Interface
+
 ```typescript
-interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+interface TextareaProps
+  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   helperText?: string;
   label?: string;
   maxLength?: number;
@@ -391,6 +406,7 @@ interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement
 ```
 
 #### Features
+
 - Similar to Input component
 - No resize (resize-none)
 - Minimum height: min-h-22
@@ -469,9 +485,11 @@ const [message, setMessage] = useState("");
 ---
 
 ### Select Component
+
 **File:** `src/components/ui/select.tsx`
 
 #### Props Interface
+
 ```typescript
 interface SelectProps {
   label?: string;
@@ -489,6 +507,7 @@ interface SelectProps {
 ```
 
 #### Features
+
 - Built on Radix UI Select primitive
 - Custom trigger dengan leading icon support
 - Animated dropdown (fade in/zoom in)
@@ -623,9 +642,11 @@ const [education, setEducation] = useState("");
 ---
 
 ### Label Component
+
 **File:** `src/components/ui/label.tsx`
 
 #### Props Interface
+
 ```typescript
 interface LabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> {
   required?: boolean;
@@ -633,10 +654,11 @@ interface LabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> {
 ```
 
 #### Features
+
 - Text size: text-xs (12px)
 - Font weight: normal (400)
 - Color: text-neutral-90
-- Required indicator: red asterisk (*)
+- Required indicator: red asterisk (\*)
 
 #### Cara Pakai
 
@@ -665,23 +687,26 @@ import { Label } from "@/components/ui/label";
 ---
 
 ### Dialog/Modal Component
+
 **File:** `src/components/ui/dialog.tsx`
 
 #### Components
+
 ```typescript
-Dialog // Root component
-DialogTrigger // Trigger element
-DialogPortal // Portal container
-DialogClose // Close button
-DialogOverlay // Dark overlay
-DialogContent // Main content area
-DialogHeader // Header section
-DialogFooter // Footer section
-DialogTitle // Title element
-DialogDescription // Description element
+Dialog; // Root component
+DialogTrigger; // Trigger element
+DialogPortal; // Portal container
+DialogClose; // Close button
+DialogOverlay; // Dark overlay
+DialogContent; // Main content area
+DialogHeader; // Header section
+DialogFooter; // Footer section
+DialogTitle; // Title element
+DialogDescription; // Description element
 ```
 
 #### Features
+
 - Built on Radix UI Dialog primitive
 - Animated overlay (fade in/out)
 - Animated content (slide in/out)
@@ -787,9 +812,11 @@ const [open, setOpen] = useState(false);
 ---
 
 ### Chip Component
+
 **File:** `src/components/ui/chip.tsx`
 
 #### Props Interface
+
 ```typescript
 interface ChipProps {
   label: string;
@@ -800,11 +827,13 @@ interface ChipProps {
 ```
 
 #### States
+
 - **rest**: White background, border neutral-40, text neutral-90
 - **active**: White background, border primary, text primary
 - **disabled**: Neutral-30 background, text neutral-60, opacity 60%
 
 #### Features
+
 - Inline-flex display
 - Padding: px-3 py-1
 - Height: 8
@@ -840,19 +869,19 @@ const [selectedSkills, setSelectedSkills] = useState(["React", "TypeScript"]);
 
 // Chip dengan onClick handler (wrapper element)
 const [selected, setSelected] = useState(false);
-<div 
+<div
   onClick={() => setSelected(!selected)}
   className="cursor-pointer"
 >
-  <Chip 
-    label="Click me" 
+  <Chip
+    label="Click me"
     state={selected ? "active" : "rest"}
   />
 </div>
 
 // Chip dengan custom className
-<Chip 
-  label="Custom Styled" 
+<Chip
+  label="Custom Styled"
   state="active"
   className="text-lg"
 />
@@ -888,9 +917,11 @@ const tags = ["Frontend", "Backend", "Mobile", "DevOps"];
 ---
 
 ### Radio Button Component
+
 **File:** `src/components/ui/radio-button.tsx`
 
 #### Props Interface
+
 ```typescript
 interface RadioButtonProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
@@ -899,6 +930,7 @@ interface RadioButtonProps extends React.InputHTMLAttributes<HTMLInputElement> {
 ```
 
 #### Features
+
 - Custom radio circle styling
 - Border: 2px solid #404040
 - Inner circle saat checked
@@ -1000,9 +1032,11 @@ const [gender, setGender] = useState("not-specified");
 ---
 
 ### Phone Input Component
+
 **File:** `src/components/ui/phone-input.tsx`
 
 #### Props Interface
+
 ```typescript
 interface PhoneInputProps {
   value: { code: string; number: string };
@@ -1017,6 +1051,7 @@ interface PhoneInputProps {
 ```
 
 #### Features
+
 - Country code selector dengan Radix Popover
 - Search functionality untuk countries
 - Dynamic country data loading
@@ -1116,9 +1151,11 @@ const [phoneValid, setPhoneValid] = useState(false);
 ---
 
 ### Table Component
+
 **File:** `src/components/ui/table.tsx`
 
 #### Props Interface
+
 ```typescript
 interface TableColumn<T> {
   key: keyof T;
@@ -1145,6 +1182,7 @@ interface TableProps<T extends Record<string, unknown>> {
 ```
 
 #### Features
+
 - Fixed first column saat horizontal scroll
 - Custom column rendering
 - Hover effects
@@ -1339,9 +1377,11 @@ const customColumns: TableColumn<User>[] = [
 ---
 
 ### Calendar Component
+
 **File:** `src/components/ui/calendar/calendar.tsx`
 
 #### Props Interface
+
 ```typescript
 interface CalendarProps {
   selectedDate: Date | null;
@@ -1351,12 +1391,14 @@ interface CalendarProps {
 ```
 
 #### Views
+
 - **day**: Daily calendar view
 - **month**: Month selection
 - **year**: Year selection
 - **decade**: Decade selection
 
 #### Features
+
 - Smart positioning (bottom/top based on viewport space)
 - Navigation controls:
   - Double chevron: Change decade/year/decade
@@ -1391,6 +1433,7 @@ const [date, setDate] = useState<Date | null>(null);
 ---
 
 ### Datepicker Component
+
 **File:** `src/components/ui/calendar/datepicker.tsx`
 
 Wrapper component yang menggunakan Calendar untuk date selection.
@@ -1403,18 +1446,17 @@ import { useState } from "react";
 
 // Datepicker (implementation tergantung dari datepicker.tsx)
 const [selectedDate, setSelectedDate] = useState<Date | null>(null);
-<Datepicker
-  value={selectedDate}
-  onChange={setSelectedDate}
-/>
+<Datepicker value={selectedDate} onChange={setSelectedDate} />;
 ```
 
 ---
 
 ## 🎭 Feature Components
+
 ---
 
 ### Profile Image Uploader
+
 **File:** `src/components/feature/gesture/profile-image-uploader.tsx`
 
 Component untuk upload profil image dengan gesture capture alternative.
@@ -1448,9 +1490,11 @@ import { ProfileImageUploader } from "@/components/feature/gesture/profile-image
 ## 🎯 Custom Hooks
 
 ### useGestureCapture
+
 **File:** `src/hooks/useGestureCapture.ts`
 
 #### State Interface
+
 ```typescript
 interface GestureCaptureState {
   scriptsLoaded: boolean;
@@ -1468,6 +1512,7 @@ interface GestureCaptureState {
 ```
 
 #### Actions Interface
+
 ```typescript
 interface GestureCaptureActions {
   onScriptsLoaded: () => void;
@@ -1477,6 +1522,7 @@ interface GestureCaptureActions {
 ```
 
 #### Features
+
 - TensorFlow Handpose model loading
 - Hand pose detection
 - FingerPose gesture estimation
@@ -1511,16 +1557,10 @@ export default function GestureCaptureModal({
       />
 
       {/* Canvas for capture */}
-      <canvas
-        ref={refs.canvasRef}
-        style={{ display: "none" }}
-      />
+      <canvas ref={refs.canvasRef} style={{ display: "none" }} />
 
       {/* Drawing canvas for pose visualization */}
-      <canvas
-        ref={refs.drawingCanvasRef}
-        className="w-full"
-      />
+      <canvas ref={refs.drawingCanvasRef} className="w-full" />
 
       {/* Display current state */}
       <div>
@@ -1532,12 +1572,8 @@ export default function GestureCaptureModal({
 
       {/* Action buttons */}
       <div className="flex gap-2">
-        <button onClick={actions.handleRetake}>
-          Retake
-        </button>
-        <button onClick={() => actions.handleSubmit(onSubmit)}>
-          Confirm
-        </button>
+        <button onClick={actions.handleRetake}>Retake</button>
+        <button onClick={() => actions.handleSubmit(onSubmit)}>Confirm</button>
       </div>
     </div>
   );
@@ -1549,18 +1585,24 @@ export default function GestureCaptureModal({
 ## 📸 Assets (Gambar)
 
 ### Gesture Pose Images
+
 **Location:** `public/img/pose/`
 
-| File | Penggunaan |
-|------|-----------|
-| `1.svg` | One finger pose (inactive state) |
+| File            | Penggunaan                             |
+| --------------- | -------------------------------------- |
+| `1.svg`         | One finger pose (inactive state)       |
 | `1-success.svg` | One finger pose (success/active state) |
-| `2.svg` | Victory/two fingers pose (inactive) |
-| `2-success.svg` | Victory pose (success/active) |
-| `3.svg` | Three fingers pose (inactive) |
-| `3-success.svg` | Three fingers pose (success/active) |
+| `2.svg`         | Victory/two fingers pose (inactive)    |
+| `2-success.svg` | Victory pose (success/active)          |
+| `3.svg`         | Three fingers pose (inactive)          |
+| `3-success.svg` | Three fingers pose (success/active)    |
+
+/public/img/application-sent.svg
+/public/img/no-candidate.found.svg
+/public/img/no-job-opening.svg
 
 #### Format
+
 - SVG format untuk scalability
 - Responsive sizing (w-16 h-16)
 - Transition animations pada state change
@@ -1570,27 +1612,30 @@ export default function GestureCaptureModal({
 ## 🔧 Utilities
 
 ### cn() Function
+
 **File:** `src/lib/utils.ts`
 
 ```typescript
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(clsx(inputs));
 }
 ```
 
 #### Purpose
+
 - Merge Tailwind CSS classes intelligently
 - Prevent class conflicts
 - Handle conditional classes dengan clsx
 - Merge overlapping utilities dengan tailwind-merge
 
 #### Usage
+
 ```typescript
 cn(
   "px-4 py-2 bg-primary",
   condition && "bg-secondary",
   "px-6" // akan merge dengan px-4 (px-6 wins)
-)
+);
 ```
 
 ---
@@ -1598,6 +1643,7 @@ cn(
 ## 🌐 Services
 
 ### useGetCountry
+
 **File:** `src/service/useGetCountry.ts`
 
 Hook/service untuk fetch country data dengan dial codes untuk PhoneInput component.
@@ -1609,7 +1655,7 @@ interface Country {
   // ... other properties
 }
 
-export function getCountries(): Promise<Country[]>
+export function getCountries(): Promise<Country[]>;
 ```
 
 ---
@@ -1670,23 +1716,27 @@ public/
 ## 🎯 Component Usage Guidelines
 
 ### State Management
+
 - Gunakan `useState` untuk local component state
 - Utilize custom hooks untuk reusable logic
 - Keep state as close to where it's used as possible
 
 ### Styling
+
 - Use Tailwind CSS utilities sebagai first choice
 - Apply custom classes melalui `cn()` utility
 - Combine variants menggunakan `class-variance-authority` (CVA)
 - Maintain consistency dengan design system colors
 
 ### Accessibility
+
 - Gunakan semantic HTML elements
 - Add proper ARIA attributes
 - Test dengan keyboard navigation
 - Ensure color contrast compliance
 
 ### Performance
+
 - Memoize expensive computations dengan `useMemo`
 - Use `React.forwardRef` untuk component composition
 - Lazy load external scripts (gesture models)
@@ -1697,6 +1747,7 @@ public/
 ## 📝 Notes for AI Agents
 
 Ketika AI agents membaca dokumentasi ini, mereka dapat:
+
 1. ✅ Memahami structure lengkap dari semua components yang tersedia
 2. ✅ Mengikuti design system yang sudah established
 3. ✅ Menggunakan imported assets dengan path yang benar

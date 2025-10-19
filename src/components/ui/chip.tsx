@@ -27,7 +27,7 @@ export const Chip: React.FC<ChipProps> = ({
   };
 
   const disabledStyles = disabled
-    ? "bg-neutral-30 border border-neutral-40 text-neutral-60 !cursor-not-allowed opacity-60"
+    ? "!bg-neutral-30 border border-neutral-40 !text-neutral-60 !cursor-not-allowed"
     : "";
 
   const chipStyles = `${baseStyles} ${stateStyles[state]} ${disabledStyles} ${className}`;

@@ -20,7 +20,8 @@ export function GestureOverlay({ status, countdown }: OverlayProps) {
   if (status === "error")
     return (
       <div className="absolute inset-0 bg-black/70 flex items-center justify-center text-white text-xl p-4 text-center">
-        Could not access webcam.
+        Could not access webcam. Please Restart your browser and allow webcam
+        access.
       </div>
     );
   return null;

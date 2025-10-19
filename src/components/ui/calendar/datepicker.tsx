@@ -7,9 +7,10 @@ import { Label } from "../label";
 interface DatePickerProps {
   label?: string;
   required?: boolean;
+  onDateChange?: (date: Date) => void;
 }
 
-const DatePicker: React.FC<DatePickerProps> = ({ label, required }) => {
+const DatePicker: React.FC<DatePickerProps> = ({ label, required, onDateChange }) => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -18,6 +19,7 @@ const DatePicker: React.FC<DatePickerProps> = ({ label, required }) => {
   const handleDateChange = (date: Date) => {
     setSelectedDate(date);
     setIsOpen(false);
+    onDateChange?.(date);
   };
 
   const formatDate = (date: Date | null): string => {
@@ -66,6 +68,7 @@ const DatePicker: React.FC<DatePickerProps> = ({ label, required }) => {
       <div className="relative">
         <button
           onClick={() => setIsOpen(!isOpen)}
+          type="button"
           className={`w-full h-10 px-4 py-2 rounded-lg border-2 transition-all outline-none flex items-center gap-2
             bg-white border-neutral-40 
             hover:border-primary/20 focus:border-primary

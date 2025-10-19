@@ -1,4 +1,3 @@
-// app/components/ProfileUploader.js
 "use client";
 
 import { useState } from "react";
@@ -7,13 +6,18 @@ import { Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import GestureCaptureModal from "./gesture-capture-modal";
 
-export default function ProfileUploader() {
+interface ProfileUploaderProps {
+  onImageChange?: (imageUrl: string) => void;
+}
+
+export default function ProfileUploader({ onImageChange }: ProfileUploaderProps) {
   const [imageUrl, setImageUrl] = useState<string | null>(null); // State untuk menyimpan URL gambar hasil capture
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleImageSubmit = (newImageUrl: string) => {
     setImageUrl(newImageUrl);
     setIsModalOpen(false);
+    onImageChange?.(newImageUrl);
   };
 
   return (
@@ -44,6 +48,7 @@ export default function ProfileUploader() {
         </div>
 
         <Button
+          type="button"
           onClick={() => setIsModalOpen(true)}
           variant="outline"
           size="md"

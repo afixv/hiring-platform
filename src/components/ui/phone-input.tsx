@@ -39,7 +39,6 @@ const PhoneInput = ({
   const [countries, setCountries] = React.useState<Country[]>([]);
   const [searchTerm, setSearchTerm] = React.useState("");
 
-  // Ambil data negara saat komponen pertama kali dirender
   React.useEffect(() => {
     const fetchCountries = async () => {
       const data = await getCountries();
@@ -109,7 +108,6 @@ const PhoneInput = ({
                 />
               </div>
             </div>
-            {/* Country List */}
             <div className="max-h-[250px] overflow-y-auto [&::-webkit-scrollbar]:hidden">
               {filteredCountries.length > 0 ? (
                 filteredCountries.map((country) => (
@@ -156,14 +154,11 @@ const PhoneInput = ({
                 </div>
               )}
             </div>
-            {/* Search Input inside Popover */}
           </Popover.Content>
         </Popover.Root>
 
-        {/* Divider */}
         <div className="h-6 w-[0.5px] bg-neutral-40" />
 
-        {/* Phone Number Input */}
         <div className="flex items-center gap-2 pl-2 ">
           <span className="text-sm text-neutral-90">{value.code}</span>
           <input

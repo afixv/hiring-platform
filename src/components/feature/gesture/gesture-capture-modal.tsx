@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import Script from "next/script";
 import { useGestureCapture } from "@/hooks/useGestureCapture";
 import { GestureOverlay } from "./gesture-overlay";
@@ -13,6 +14,17 @@ export default function GestureCaptureModal({
   onSubmit: (image: string) => void;
 }) {
   const { state, actions, refs } = useGestureCapture();
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        onClose();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [onClose]);
 
   return (
     <>
@@ -47,6 +59,7 @@ export default function GestureCaptureModal({
             </div>
             <button
               onClick={onClose}
+              type="button"
               className="text-2xl text-gray-400 hover:text-gray-600">
               &times;
             </button>
@@ -84,11 +97,13 @@ export default function GestureCaptureModal({
               <div className="flex justify-center gap-4">
                 <button
                   onClick={actions.handleRetake}
+                  type="button"
                   className="px-6 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100">
                   Retake
                 </button>
                 <button
                   onClick={() => actions.handleSubmit(onSubmit)}
+                  type="button"
                   className="px-6 py-2 bg-teal-500 text-white rounded-md hover:bg-teal-600">
                   Submit
                 </button>

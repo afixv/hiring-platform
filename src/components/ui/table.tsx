@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
  */
 export interface TableColumn<T> {
   key: keyof T;
-  label: string;
+  label: string | ReactNode;
   width?: string | number; // e.g., "200px", 200
   render?: (value: T[keyof T], row: T, rowIndex: number) => ReactNode;
   headerClassName?: string;
@@ -115,19 +115,30 @@ const Table = React.forwardRef<
           <div className="flex flex-row w-full relative gap-0">
             {/* Custom scrollbar styles */}
             <style>{`
+            .table-scroll-container {
+              scrollbar-width: thin;
+              scrollbar-color: #01959F #F5F5F5;
+            }
             .table-scroll-container::-webkit-scrollbar {
-              height: 10px;
+              height: 6px;
+              width: 6px;
             }
             .table-scroll-container::-webkit-scrollbar-track {
-              background: #EDEDED;
+              background: #F5F5F5;
+              border-radius: 4px;
             }
             .table-scroll-container::-webkit-scrollbar-thumb {
               background: #01959F;
-              border-radius: 8px;
-              height: 123px;
+              border-radius: 4px;
             }
             .table-scroll-container::-webkit-scrollbar-thumb:hover {
               background: #008c96;
+            }
+            .table-scroll-container::-webkit-scrollbar-button:start:decrement,
+            .table-scroll-container::-webkit-scrollbar-button:end:increment {
+              display: none;
+              height: 0;
+              background: transparent;
             }
           `}</style>
             {/* Fixed Column Section */}
@@ -219,7 +230,7 @@ const Table = React.forwardRef<
               <div
                 className={cn(
                   "flex flex-row items-center gap-0",
-                  "bg-[#FCFCFC] border-[#EDEDED]",
+                  "bg-[#FAFAFA] border-b border-[#EDEDED]",
                   "min-w-min"
                 )}>
                 {actualScrollableColumns.map((column) => (
@@ -232,7 +243,6 @@ const Table = React.forwardRef<
                     className={cn(
                       "px-4 py-4 flex items-center flex-shrink-0",
                       "text-xs !font-bold text-[#1D1F20]",
-                      "border-b border-[#EDEDED]",
                       column.headerClassName
                     )}>
                     {column.label}
