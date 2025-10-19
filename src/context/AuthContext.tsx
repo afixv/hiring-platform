@@ -24,6 +24,7 @@ interface AuthContextType {
   login: (email: string, password: string) => Promise<void>;
   register: (email: string, password: string, fullName: string, role: UserRole) => Promise<void>;
   logout: () => Promise<void>;
+  refreshUser: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -33,6 +34,33 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [supabaseUser, setSupabaseUser] = useState<SupabaseUser | null>(null);
   const [role, setRole] = useState<UserRole | null>(null);
   const [loading, setLoading] = useState(true);
+
+  // Fetch user profile from database
+  const fetchUserProfile = async (userId: string) => {
+    try {
+      const { data: userData, error } = await supabase
+        .from('users')
+        .select('*')
+        .eq('id', userId)
+        .single();
+
+      if (error) {
+        console.error('Error fetching user profile:', error);
+        return null;
+      }
+
+      if (userData) {
+        const typedUser = userData as User;
+        setUser(typedUser);
+        setRole(typedUser.role as UserRole);
+        return typedUser;
+      }
+      return null;
+    } catch (error) {
+      console.error('Error fetching user profile:', error);
+      return null;
+    }
+  };
 
   // Initialize auth state
   useEffect(() => {
@@ -45,25 +73,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
         if (session) {
           setSupabaseUser(session.user);
-          // Fetch user profile from database (without .single() to avoid error if not found)
-          const { data: userData, error } = await supabase
-            .from('users')
-            .select('*')
-            .eq('id', session.user.id);
-
-          if (error) {
-            console.error('Error fetching user:', error);
-            // Still set authenticated, but without profile
-            setSupabaseUser(session.user);
-          } else if (userData && userData.length > 0) {
-            const typedUser = userData[0] as User;
-            setUser(typedUser);
-            setRole(typedUser.role as UserRole);
-          } else {
-            // No user record yet - might be first login
-            console.warn('User profile not found in database');
-            setSupabaseUser(session.user);
-          }
+          await fetchUserProfile(session.user.id);
         }
       } catch (error) {
         console.error('Error initializing auth:', error);
@@ -80,19 +90,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     } = supabase.auth.onAuthStateChange(async (event, session) => {
       if (session) {
         setSupabaseUser(session.user);
-        const { data: userData, error } = await supabase
-          .from('users')
-          .select('*')
-          .eq('id', session.user.id);
-
-        if (!error && userData && userData.length > 0) {
-          const typedUser = userData[0] as User;
-          setUser(typedUser);
-          setRole(typedUser.role as UserRole);
-        } else {
-          // No profile yet - just keep auth user
-          setSupabaseUser(session.user);
-        }
+        // Fetch profile after auth state change
+        await fetchUserProfile(session.user.id);
       } else {
         setSupabaseUser(null);
         setUser(null);
@@ -170,6 +169,20 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  const refreshUser = async () => {
+    try {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+
+      if (session) {
+        await fetchUserProfile(session.user.id);
+      }
+    } catch (error) {
+      console.error('Error refreshing user:', error);
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -177,10 +190,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         supabaseUser,
         role,
         loading,
-        isAuthenticated: !!user,
+        isAuthenticated: !!supabaseUser,
         login,
         register,
         logout,
+        refreshUser,
       }}
     >
       {children}

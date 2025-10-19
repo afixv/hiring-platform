@@ -24,9 +24,17 @@ export default function LoginPage() {
     try {
       await login(email, password);
       setShowToast(true);
+      
+      // Wait a bit for auth state to update, then redirect based on role
       setTimeout(() => {
-        router.push("/");
-      }, 1500);
+        // Get the updated auth context after login
+        const checkRoleAndRedirect = async () => {
+          // Give auth context time to update
+          await new Promise(resolve => setTimeout(resolve, 500));
+          router.push("/");
+        };
+        checkRoleAndRedirect();
+      }, 1000);
     } catch (err) {
       const errorMessage =
         err instanceof Error

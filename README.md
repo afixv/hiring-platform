@@ -282,16 +282,13 @@ hiring-platform/
 - ✅ **Manage Jobs** - View, edit, and delete job postings
 - ✅ **Job Status Tracking** - Track job status (Open, Closed, etc.)
 - ✅ **Candidate Review** - View all candidates who applied for specific jobs
-- ✅ **Real-time Updates** - Live job data updates
 
 ### Candidate Management
-- ✅ **Application Tracking** - Track candidate applications and statuses
+- ✅ **Application Tracking** - Track candidate applications
 - ✅ **Candidate Profiles** - Detailed candidate information and application history
-- ✅ **Sortable Candidate List** - Organize candidates using drag-and-drop
-- ✅ **Status Management** - Update candidate application statuses
 
 ### Job Application (Applicant)
-- ✅ **Job Browsing** - Search and filter available job positions
+- ✅ **Job Browsing** - Searchvailable job positions
 - ✅ **Application Submission** - Apply for jobs with required information
 - ✅ **Application History** - View submitted applications and their status
 - ✅ **User Profiles** - Create and manage applicant profiles
@@ -322,7 +319,6 @@ hiring-platform/
 - 🎯 **Dark Mode Ready** - Design system supports light/dark themes
 
 ### Advanced Features
-- 🎯 **Drag-and-Drop Candidate Management** - Organize candidates with @dnd-kit
 - 🎯 **Gesture Recognition System** - Advanced hand pose detection using Fingerpose
 - 🎯 **Webcam Integration** - Real-time video capture for gesture authentication
 - 🎯 **Phone Input Formatting** - International phone number input support
@@ -342,7 +338,6 @@ hiring-platform/
 
 ### Data Management
 - Job and candidate data is stored in Supabase PostgreSQL database
-- Real-time data synchronization using Supabase listeners
 - All data operations follow REST principles through Supabase API
 
 ### Gesture Recognition

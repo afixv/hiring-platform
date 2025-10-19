@@ -6,7 +6,7 @@ import { useAuth } from '@/context/AuthContext';
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
-  requiredRole: 'admin' | 'jobseeker';
+  requiredRole?: 'admin' | 'jobseeker';
 }
 
 export function ProtectedRoute({ children, requiredRole }: ProtectedRouteProps) {
@@ -14,14 +14,23 @@ export function ProtectedRoute({ children, requiredRole }: ProtectedRouteProps) 
   const { loading, isAuthenticated, role } = useAuth();
 
   useEffect(() => {
-    if (!loading && !isAuthenticated) {
+    // Wait for auth to finish loading
+    if (loading) return;
+
+    // If not authenticated, redirect to login
+    if (!isAuthenticated) {
       router.push('/auth/login');
-    } else if (!loading && role !== requiredRole) {
-      // Unauthorized access
+      return;
+    }
+
+    // If role is required and doesn't match, redirect to home
+    if (requiredRole && role !== requiredRole) {
       router.push('/');
+      return;
     }
   }, [loading, isAuthenticated, role, requiredRole, router]);
 
+  // Show loading while checking auth
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-neutral-20">
@@ -33,7 +42,8 @@ export function ProtectedRoute({ children, requiredRole }: ProtectedRouteProps) 
     );
   }
 
-  if (!isAuthenticated || role !== requiredRole) {
+  // Don't render if not authenticated or wrong role
+  if (!isAuthenticated || (requiredRole && role !== requiredRole)) {
     return null;
   }
 
