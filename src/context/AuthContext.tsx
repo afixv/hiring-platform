@@ -81,6 +81,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
         if (session) {
           setSupabaseUser(session.user);
+          await fetchUserProfile(session.user.id, session.user);
         } 
       } catch (error) {
         console.error('[Auth] Error initializing auth:', error);
@@ -97,6 +98,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       
       if (session) {
         setSupabaseUser(session.user);
+        await fetchUserProfile(session.user.id, session.user);
       } else {
         setSupabaseUser(null);
         setUser(null);
